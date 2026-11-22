@@ -1,1 +1,1218 @@
-test
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#F4F6F9]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science, Technology & Innovation Feed | UK Police Science & Technology Academy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        police: {
+                            dark: '#0B1F3A',
+                            navy: '#132C4E',
+                            lightNavy: '#1A385C',
+                            blue: '#0072CE',
+                            gold: '#F5B800',
+                            goldHover: '#E0A800',
+                            goldLight: '#FFF4CE',
+                            border: '#D8E1EB',
+                            bg: '#F4F6F9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom scrollbar and subtle animations */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4F6F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        .hero-pattern {
+            background-color: #0B1F3A;
+            background-image: radial-gradient(#1A385C 1.5px, transparent 1.5px), radial-gradient(#1A385C 1.5px, #0B1F3A 1.5px);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col font-sans text-slate-800 bg-[#F4F6F9] antialiased">
+
+    <!-- TOP PUBLIC-SECTOR BANNER -->
+    <div class="bg-[#071527] text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-police-gold text-police-dark uppercase tracking-wider">Official</span>
+                <span class="font-medium text-slate-200">UK Police Science & Technology Horizon Scanning Digest</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a href="https://policescienceandtechacademy.com/" target="_blank" rel="noopener noreferrer" class="hover:text-police-gold transition-colors inline-flex items-center gap-1 font-medium">
+                    <i class="fa-solid font-xs fa-arrow-up-right-from-square"></i> Police Science Academy Main Site
+                </a>
+                <span class="text-slate-600">|</span>
+                <span id="last-updated-indicator" class="text-slate-400"><i class="fa-regular fa-clock mr-1"></i>Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HERO HEADER -->
+    <header class="hero-pattern text-white relative shadow-xl border-b-4 border-police-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <!-- Brand & Titles -->
+                <div class="space-y-3 max-w-3xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-lg bg-police-navy border border-police-gold/40 flex items-center justify-center text-police-gold shadow-md">
+                            <i class="fa-solid fa-shield-halved text-2xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-police-gold block">Office of the Police Chief Scientific Adviser & Academy</span>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">Science, Technology & Innovation Feed</h1>
+                        </div>
+                    </div>
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed pl-0 sm:pl-[60px]">
+                        Horizon Scanning & Research Digest — Interleaving 10 leading scientific journals, technological research feeds, and innovation portals into a unified intelligence hub.
+                    </p>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex flex-wrap items-center gap-2.5 sm:self-end lg:self-center">
+                    <button id="btn-refresh" onclick="fetchAllFeeds(true)" class="inline-flex items-center gap-2 bg-police-navy hover:bg-police-lightNavy text-white font-medium text-sm px-4 py-2.5 rounded-lg border border-slate-600 shadow-sm transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-police-gold">
+                        <i class="fa-solid fa-rotate-right" id="refresh-icon"></i>
+                        <span>Refresh Feeds</span>
+                    </button>
+                    
+                    <button id="btn-opml" onclick="exportOPML()" class="inline-flex items-center gap-2 bg-police-gold hover:bg-police-goldHover text-police-dark font-bold text-sm px-4 py-2.5 rounded-lg shadow-md transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fa-solid fa-file-export"></i>
+                        <span>Export OPML</span>
+                    </button>
+
+                    <button id="btn-sample-toggle" onclick="toggleSampleMode()" class="inline-flex items-center gap-1.5 bg-slate-800/80 hover:bg-slate-800 text-xs text-slate-300 hover:text-white px-3 py-2.5 rounded-lg border border-slate-700 transition-colors">
+                        <i class="fa-solid fa-vial text-police-gold"></i>
+                        <span id="sample-mode-label">Demo Feed Off</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Bar inside Header -->
+            <div class="mt-6 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full max-w-2xl">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    </div>
+                    <input type="text" id="global-search" oninput="handleSearch(this.value)" 
+                           placeholder="Filter articles across Science, Technology, and Innovation by keyword..." 
+                           class="w-full pl-10 pr-10 py-2.5 bg-slate-900/90 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-police-gold focus:ring-1 focus:ring-police-gold transition-all">
+                    <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2 text-xs text-slate-300 self-start sm:self-center">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="active-feed-count-badge">10 Active Feeds Monitored</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STICKY SECTION NAVIGATION BAR -->
+    <nav class="sticky top-0 z-30 bg-police-navy border-b border-slate-700 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between overflow-x-auto no-scrollbar py-2 gap-2">
+                <div class="flex items-center space-x-1 sm:space-x-2">
+                    <button onclick="scrollToSection('all')" id="nav-tab-all" class="nav-tab px-4 py-2 rounded-md text-xs sm:text-sm font-semibold whitespace-nowrap bg-police-gold text-police-dark transition-all">
+                        <i class="fa-solid fa-layer-group mr-1.5"></i> All Sections
+                    </button>
+                    <button onclick="scrollToSection('science')" id="nav-tab-science" class="nav-tab px-4 py-2 rounded-md text-xs sm:text-sm font-semibold whitespace-nowrap text-slate-200 hover:text-white hover:bg-police-lightNavy transition-all">
+                        <i class="fa-solid fa-flask mr-1.5 text-blue-400"></i> Science
+                    </button>
+                    <button onclick="scrollToSection('technology')" id="nav-tab-technology" class="nav-tab px-4 py-2 rounded-md text-xs sm:text-sm font-semibold whitespace-nowrap text-slate-200 hover:text-white hover:bg-police-lightNavy transition-all">
+                        <i class="fa-solid fa-microchip mr-1.5 text-purple-400"></i> Technology
+                    </button>
+                    <button onclick="scrollToSection('innovation')" id="nav-tab-innovation" class="nav-tab px-4 py-2 rounded-md text-xs sm:text-sm font-semibold whitespace-nowrap text-slate-200 hover:text-white hover:bg-police-lightNavy transition-all">
+                        <i class="fa-solid fa-rocket mr-1.5 text-amber-400"></i> Innovation & The Future
+                    </button>
+                </div>
+
+                <div class="hidden md:flex items-center gap-3 text-xs text-slate-300 border-l border-slate-700 pl-4">
+                    <button onclick="scrollToSection('feed-directory')" class="hover:text-police-gold transition-colors inline-flex items-center gap-1">
+                        <i class="fa-solid fa-rss text-police-gold"></i> Direct RSS Links
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEARCH RESULT BANNER (HIDDEN BY DEFAULT) -->
+    <div id="search-results-bar" class="hidden bg-police-goldLight border-b border-police-gold/30 py-3 px-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between text-xs sm:text-sm text-police-dark">
+            <div>
+                <i class="fa-solid fa-filter mr-1 text-police-navy"></i>
+                Filtering articles by query: <span id="search-query-text" class="font-bold underline"></span>
+                <span id="search-results-count" class="ml-2 bg-police-navy text-white text-xs px-2 py-0.5 rounded-full font-semibold"></span>
+            </div>
+            <button onclick="clearSearch()" class="text-xs font-semibold text-police-navy hover:underline">Clear Filter</button>
+        </div>
+    </div>
+
+    <!-- NETWORK WARNING BANNER (Shows if proxies block external CORS) -->
+    <div id="cors-warning-bar" class="hidden bg-amber-50 border-b border-amber-200 py-3 px-4 text-xs text-amber-900">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-amber-600 text-sm"></i>
+                <span>Notice: External CORS proxy fallback activated. If live feed requests are restricted in your network environment, switch to <strong>Demo Mode</strong> to preview curated intelligence items.</span>
+            </div>
+            <button onclick="toggleSampleMode(true)" class="whitespace-nowrap px-3 py-1 bg-amber-600 text-white font-semibold rounded text-xs hover:bg-amber-700 transition-colors">
+                Enable Demo Items
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- ================= SECTION 1: SCIENCE ================= -->
+        <section id="section-science" class="scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm border border-police-border p-5 sm:p-6 mb-6">
+                <!-- Section Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg border border-blue-100">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-police-dark">Science</h2>
+                            <p class="text-xs sm:text-sm text-slate-500">Peer-reviewed discoveries, physical sciences, and interdisciplinary research updates.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <span id="count-science" class="font-bold text-police-navy">0</span> articles available
+                    </div>
+                </div>
+
+                <!-- Source Filter Pills -->
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="text-slate-400 font-medium mr-1"><i class="fa-solid fa-filter text-[10px]"></i> Sources:</span>
+                    <button onclick="toggleSourcePill('science', 'Science Daily')" id="pill-science-Science Daily" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 text-blue-800 font-medium transition-all hover:bg-blue-100">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span> Science Daily
+                    </button>
+                    <button onclick="toggleSourcePill('science', 'Science News')" id="pill-science-Science News" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-200 bg-cyan-50 text-cyan-800 font-medium transition-all hover:bg-cyan-100">
+                        <span class="w-2 h-2 rounded-full bg-cyan-500"></span> Science News
+                    </button>
+                    <button onclick="toggleSourcePill('science', 'SciTechDaily')" id="pill-science-SciTechDaily" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-200 bg-teal-50 text-teal-800 font-medium transition-all hover:bg-teal-100">
+                        <span class="w-2 h-2 rounded-full bg-teal-500"></span> SciTechDaily
+                    </button>
+                    <button onclick="resetSectionFilters('science')" class="text-slate-400 hover:text-slate-600 ml-auto underline text-[11px]">Select All</button>
+                </div>
+            </div>
+
+            <!-- Feed Status Alert Area for Science -->
+            <div id="status-science" class="space-y-2 mb-4"></div>
+
+            <!-- Articles Container (Mixed & Interleaved) -->
+            <div id="grid-science" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skeleton Skeletons rendered initially by JS -->
+            </div>
+
+            <!-- Section Pagination / Load More -->
+            <div class="mt-8 text-center" id="load-more-wrap-science">
+                <button onclick="loadMoreSection('science')" id="btn-more-science" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white border border-police-border text-police-navy font-semibold text-sm rounded-lg hover:bg-slate-50 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-police-gold">
+                    <span>Show More Science Articles</span>
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 2: TECHNOLOGY ================= -->
+        <section id="section-technology" class="scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm border border-police-border p-5 sm:p-6 mb-6">
+                <!-- Section Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg border border-purple-100">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-police-dark">Technology</h2>
+                            <p class="text-xs sm:text-sm text-slate-500">Digital infrastructure, software systems, cyber security, and technological reporting.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <span id="count-technology" class="font-bold text-police-navy">0</span> articles available
+                    </div>
+                </div>
+
+                <!-- Source Filter Pills -->
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="text-slate-400 font-medium mr-1"><i class="fa-solid fa-filter text-[10px]"></i> Sources:</span>
+                    <button onclick="toggleSourcePill('technology', 'Flipboard Technology')" id="pill-technology-Flipboard Technology" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-200 bg-red-50 text-red-800 font-medium transition-all hover:bg-red-100">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span> Flipboard Technology
+                    </button>
+                    <button onclick="toggleSourcePill('technology', 'Ars Technica')" id="pill-technology-Ars Technica" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-200 bg-orange-50 text-orange-800 font-medium transition-all hover:bg-orange-100">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span> Ars Technica
+                    </button>
+                    <button onclick="toggleSourcePill('technology', 'The Verge')" id="pill-technology-The Verge" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-purple-200 bg-purple-50 text-purple-800 font-medium transition-all hover:bg-purple-100">
+                        <span class="w-2 h-2 rounded-full bg-purple-500"></span> The Verge
+                    </button>
+                    <button onclick="toggleSourcePill('technology', 'TechCrunch')" id="pill-technology-TechCrunch" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-800 font-medium transition-all hover:bg-emerald-100">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> TechCrunch
+                    </button>
+                    <button onclick="resetSectionFilters('technology')" class="text-slate-400 hover:text-slate-600 ml-auto underline text-[11px]">Select All</button>
+                </div>
+            </div>
+
+            <!-- Feed Status Alert Area for Tech -->
+            <div id="status-technology" class="space-y-2 mb-4"></div>
+
+            <!-- Articles Container (Mixed & Interleaved) -->
+            <div id="grid-technology" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skeletons loaded via JS -->
+            </div>
+
+            <!-- Section Pagination / Load More -->
+            <div class="mt-8 text-center" id="load-more-wrap-technology">
+                <button onclick="loadMoreSection('technology')" id="btn-more-technology" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white border border-police-border text-police-navy font-semibold text-sm rounded-lg hover:bg-slate-50 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-police-gold">
+                    <span>Show More Technology Articles</span>
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 3: INNOVATION & THE FUTURE ================= -->
+        <section id="section-innovation" class="scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm border border-police-border p-5 sm:p-6 mb-6">
+                <!-- Section Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg border border-amber-100">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-police-dark">Innovation & The Future</h2>
+                            <p class="text-xs sm:text-sm text-slate-500">Emerging technologies, AI horizons, standards, measurement science, and startup breakthroughs.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <span id="count-innovation" class="font-bold text-police-navy">0</span> articles available
+                    </div>
+                </div>
+
+                <!-- Source Filter Pills -->
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="text-slate-400 font-medium mr-1"><i class="fa-solid fa-filter text-[10px]"></i> Sources:</span>
+                    <button onclick="toggleSourcePill('innovation', 'Singularity Hub')" id="pill-innovation-Singularity Hub" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-800 font-medium transition-all hover:bg-indigo-100">
+                        <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Singularity Hub
+                    </button>
+                    <button onclick="toggleSourcePill('innovation', 'Hacker News')" id="pill-innovation-Hacker News" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-200 bg-amber-50 text-amber-800 font-medium transition-all hover:bg-amber-100">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span> Hacker News
+                    </button>
+                    <button onclick="toggleSourcePill('innovation', 'NIST Taking Measure')" id="pill-innovation-NIST Taking Measure" class="source-pill active inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-200 bg-red-50 text-red-800 font-medium transition-all hover:bg-red-100">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span> NIST's Taking Measure
+                    </button>
+                    <button onclick="resetSectionFilters('innovation')" class="text-slate-400 hover:text-slate-600 ml-auto underline text-[11px]">Select All</button>
+                </div>
+            </div>
+
+            <!-- Feed Status Alert Area for Innovation -->
+            <div id="status-innovation" class="space-y-2 mb-4"></div>
+
+            <!-- Articles Container (Mixed & Interleaved) -->
+            <div id="grid-innovation" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skeletons loaded via JS -->
+            </div>
+
+            <!-- Section Pagination / Load More -->
+            <div class="mt-8 text-center" id="load-more-wrap-innovation">
+                <button onclick="loadMoreSection('innovation')" id="btn-more-innovation" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white border border-police-border text-police-navy font-semibold text-sm rounded-lg hover:bg-slate-50 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-police-gold">
+                    <span>Show More Innovation Articles</span>
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= FEED DIRECTORY & OPML EXPORT SECTION ================= -->
+        <section id="feed-directory" class="bg-white rounded-xl shadow-sm border border-police-border overflow-hidden scroll-mt-20">
+            <div class="p-6 bg-police-navy text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-rss text-police-gold"></i>
+                        RSS Feed Directory & Integration
+                    </h2>
+                    <p class="text-xs text-slate-300 mt-1">
+                        Direct URLs for all monitored scientific, technological, and innovation feeds. Copy links or export in standard OPML format for RSS readers.
+                    </p>
+                </div>
+                <button onclick="exportOPML()" class="inline-flex items-center gap-2 bg-police-gold hover:bg-police-goldHover text-police-dark font-bold text-xs px-4 py-2 rounded-lg transition-all shadow">
+                    <i class="fa-solid fa-download"></i> Export OPML File
+                </button>
+            </div>
+
+            <div class="p-6 overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-slate-400 font-semibold uppercase tracking-wider">
+                            <th class="py-3 px-3">Category</th>
+                            <th class="py-3 px-3">Publication / Source</th>
+                            <th class="py-3 px-3">Feed URL</th>
+                            <th class="py-3 px-3 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700" id="rss-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-police-dark text-slate-400 text-xs border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-police-navy border border-police-gold/40 flex items-center justify-center text-police-gold">
+                        <i class="fa-solid fa-shield-halved text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-white">UK Police Science & Technology Academy</p>
+                        <p class="text-[11px] text-slate-400">Office of the Police Chief Scientific Adviser</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 text-xs">
+                    <a href="https://policescienceandtechacademy.com/" target="_blank" rel="noopener noreferrer" class="hover:text-police-gold transition-colors">Official Website</a>
+                    <span>•</span>
+                    <a href="#feed-directory" class="hover:text-police-gold transition-colors">RSS Directory</a>
+                    <span>•</span>
+                    <button onclick="scrollToSection('all')" class="hover:text-police-gold transition-colors">Back to Top</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
+                <p>© Live RSS Aggregator Engine — Styled for Police Science & Technology Academy compatibility.</p>
+                <p>Feeds dynamically updated & interleaved client-side in real-time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-police-dark text-white text-xs px-4 py-3 rounded-lg shadow-xl border border-police-gold flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-police-gold text-sm" id="toast-icon"></i>
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ================= CONFIGURATION & FEED DEFINITIONS =================
+        const CATEGORIES = {
+            science: {
+                name: "Science",
+                icon: "fa-flask",
+                badgeBg: "bg-blue-50 text-blue-700 border-blue-200",
+                dotColor: "bg-blue-500",
+                feeds: [
+                    { name: "Science Daily", url: "https://www.sciencedaily.com/rss/all.xml", color: "blue" },
+                    { name: "Science News", url: "https://www.sciencenews.org/feed", color: "cyan" },
+                    { name: "SciTechDaily", url: "https://scitechdaily.com/feed", color: "teal" }
+                ]
+            },
+            technology: {
+                name: "Technology",
+                icon: "fa-microchip",
+                badgeBg: "bg-purple-50 text-purple-700 border-purple-200",
+                dotColor: "bg-purple-500",
+                feeds: [
+                    { name: "Flipboard Technology", url: "https://flipboard.com/@thenewsdesk/technology-shjum1jiz.rss", color: "red" },
+                    { name: "Ars Technica", url: "https://feeds.arstechnica.com/arstechnica/index", color: "orange" },
+                    { name: "The Verge", url: "https://www.theverge.com/rss/index.xml", color: "purple" },
+                    { name: "TechCrunch", url: "https://techcrunch.com/feed/", color: "emerald" }
+                ]
+            },
+            innovation: {
+                name: "Innovation & The Future",
+                icon: "fa-rocket",
+                badgeBg: "bg-amber-50 text-amber-700 border-amber-200",
+                dotColor: "bg-amber-500",
+                feeds: [
+                    { name: "Singularity Hub", url: "https://singularityhub.com/feed/", color: "indigo" },
+                    { name: "Hacker News", url: "https://news.ycombinator.com/rss", color: "amber" },
+                    { name: "NIST Taking Measure", url: "https://www.nist.gov/blogs/taking-measure/rss.xml", color: "red" }
+                ]
+            }
+        };
+
+        // App State
+        let store = {
+            science: [],
+            technology: [],
+            innovation: []
+        };
+        let activeFilters = {
+            science: new Set(["Science Daily", "Science News", "SciTechDaily"]),
+            technology: new Set(["Flipboard Technology", "Ars Technica", "The Verge", "TechCrunch"]),
+            innovation: new Set(["Singularity Hub", "Hacker News", "NIST Taking Measure"])
+        };
+        let displayLimits = {
+            science: 9,
+            technology: 9,
+            innovation: 9
+        };
+        let activeSearchQuery = "";
+        let useSampleMode = false;
+        let feedErrors = {};
+
+        // CORS Proxies
+        const RSS2JSON_ENDPOINT = 'https://api.rss2json.com/v1/api.json?rss_url=';
+        const ALLORIGINS_ENDPOINT = 'https://api.allorigins.win/raw?url=';
+
+        // ================= CURATED MOCK/SAMPLE DATA FOR OFFLINE / FALLBACK MODE =================
+        const SAMPLE_ARTICLES = {
+            science: [
+                {
+                    title: "Quantum Sensors Offer Unprecedented Precision for Forensic Trace Detection",
+                    link: "https://www.sciencedaily.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+                    source: "Science Daily",
+                    description: "Researchers have demonstrated a sub-atomic optical magnetometer capable of identifying trace metallic and explosive elements at sub-nanogram levels in field environments."
+                },
+                {
+                    title: "Deep Learning Model Decipher Complex Synthetic DNA Biomarkers",
+                    link: "https://www.sciencenews.org",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
+                    source: "Science News",
+                    description: "A breakthroughs in genomic sequencing algorithms enables rapid identification of engineered biological vectors within hours rather than days."
+                },
+                {
+                    title: "Autonomous Drone Swarms Map Subterranean Infrastructure in Real Time",
+                    link: "https://scitechdaily.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 360).toISOString(),
+                    source: "SciTechDaily",
+                    description: "LiDAR and ultra-wideband radar payloads allow uncrewed aerial vehicles to autonomously navigate and construct 3D spatial models without GPS."
+                },
+                {
+                    title: "Next-Generation Battery Chemistry Achieves 80% Charge in 5 Minutes",
+                    link: "https://www.sciencedaily.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 720).toISOString(),
+                    source: "Science Daily",
+                    description: "Solid-state silicon-anode cells demonstrate high energy density and thermal stability under extreme tactical operational conditions."
+                }
+            ],
+            technology: [
+                {
+                    title: "Zero-Trust Architecture Standardized Across Critical National Infrastructure",
+                    link: "https://flipboard.com/@thenewsdesk/technology-shjum1jiz",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
+                    source: "Flipboard Technology",
+                    description: "New operational directives mandate micro-segmentation and continuous cryptographic identity verification for all public sector endpoints."
+                },
+                {
+                    title: "Post-Quantum Cryptography Algorithms Implemented in Commercial Hardware Security Modules",
+                    link: "https://arstechnica.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 240).toISOString(),
+                    source: "Ars Technica",
+                    description: "Lattice-based encryption keys are deployed directly into hardware silicon to safeguard long-term sensitive encrypted communications."
+                },
+                {
+                    title: "Computer Vision System Automates Thermal & Night-Vision Video Analytics",
+                    link: "https://www.theverge.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 400).toISOString(),
+                    source: "The Verge",
+                    description: "Edge AI hardware acceleration allows real-time object detection and anomaly tracking across multi-spectral camera feeds simultaneously."
+                },
+                {
+                    title: "Generative AI Guardrails: Benchmark Testing for Data Integrity & Hallucination Prevention",
+                    link: "https://techcrunch.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 600).toISOString(),
+                    source: "TechCrunch",
+                    description: "Enterprise startups unveil automated evaluation pipelines designed to audit large language models for factual compliance."
+                }
+            ],
+            innovation: [
+                {
+                    title: "NIST Releases Updated Cybersecurity & Artificial Intelligence Risk Management Framework",
+                    link: "https://www.nist.gov",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
+                    source: "NIST Taking Measure",
+                    description: "Guidelines provide standardized metrics for evaluating trustworthiness, bias mitigation, and explainability in mission-critical AI systems."
+                },
+                {
+                    title: "Neuromorphic Computing Chips Achieve 100x Efficiency in Pattern Recognition",
+                    link: "https://singularityhub.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 150).toISOString(),
+                    source: "Singularity Hub",
+                    description: "Brain-inspired event-based processing architectures process streaming sensory data with ultra-low milliwatt power consumption."
+                },
+                {
+                    title: "Show HN: Open-Source Encrypted Mesh Networking Protocol for Off-Grid Operations",
+                    link: "https://news.ycombinator.com",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 300).toISOString(),
+                    source: "Hacker News",
+                    description: "A decentralized peer-to-peer radio transport layer that operates across LoRa and Wi-Fi Direct without centralized servers."
+                },
+                {
+                    title: "Standardizing Optical Atomic Clocks for Precision Timekeeping and Positioning",
+                    link: "https://www.nist.gov",
+                    pubDate: new Date(Date.now() - 1000 * 60 * 800).toISOString(),
+                    source: "NIST Taking Measure",
+                    description: "Portable strontium optical clocks achieve accuracy to one second in 15 billion years, enabling GPS-denied navigation."
+                }
+            ]
+        };
+
+        // ================= INIT =================
+        window.onload = function() {
+            renderFeedDirectoryTable();
+            renderSkeletonsAll();
+            fetchAllFeeds();
+        };
+
+        // ================= FETCHING & PARSING ENGINE =================
+        async function fetchAllFeeds(isUserRefresh = false) {
+            const refreshBtnIcon = document.getElementById('refresh-icon');
+            if (refreshBtnIcon) refreshBtnIcon.classList.add('fa-spin');
+            
+            feedErrors = {};
+            document.getElementById('last-updated-indicator').innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i>Fetching...`;
+
+            if (useSampleMode) {
+                loadSampleData();
+                finalizeFetchUI(isUserRefresh);
+                return;
+            }
+
+            // Prepare parallel fetches for all 10 feeds
+            const fetchPromises = [];
+
+            for (const [catKey, catObj] of Object.entries(CATEGORIES)) {
+                for (const feed of catObj.feeds) {
+                    fetchPromises.push(
+                        fetchSingleFeed(feed.url, feed.name, catKey)
+                    );
+                }
+            }
+
+            const results = await Promise.allSettled(fetchPromises);
+            
+            // Re-aggregate stores
+            let totalFetchedCount = 0;
+            for (const catKey of Object.keys(CATEGORIES)) {
+                // Sort articles chronologically descending
+                store[catKey].sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                totalFetchedCount += store[catKey].length;
+            }
+
+            // Check if all failed (e.g. strict intranet CORS policy)
+            if (totalFetchedCount === 0 && !useSampleMode) {
+                document.getElementById('cors-warning-bar').classList.remove('hidden');
+            } else {
+                document.getElementById('cors-warning-bar').classList.add('hidden');
+            }
+
+            renderAllSections();
+            finalizeFetchUI(isUserRefresh);
+        }
+
+        async function fetchSingleFeed(feedUrl, sourceName, catKey) {
+            // Attempt 1: RSS2JSON API
+            try {
+                const response = await fetch(RSS2JSON_ENDPOINT + encodeURIComponent(feedUrl), { signal: AbortSignal.timeout(6000) });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                
+                if (data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
+                    const parsedItems = data.items.map(item => ({
+                        title: cleanHtmlText(item.title || "Untitled Article"),
+                        link: item.link || item.guid || feedUrl,
+                        pubDate: item.pubDate || item.pubdate || new Date().toISOString(),
+                        source: sourceName,
+                        description: cleanHtmlText(item.description || item.content || "")
+                    }));
+                    
+                    // Merge into store (avoid duplicates by title)
+                    mergeIntoStore(catKey, parsedItems);
+                    return;
+                } else {
+                    throw new Error('Invalid JSON RSS payload');
+                }
+            } catch (err1) {
+                // Attempt 2: Fallback to AllOrigins raw XML fetch
+                try {
+                    const fallbackResp = await fetch(ALLORIGINS_ENDPOINT + encodeURIComponent(feedUrl), { signal: AbortSignal.timeout(7000) });
+                    if (!fallbackResp.ok) throw new Error(`Fallback HTTP ${fallbackResp.status}`);
+                    const rawXml = await fallbackResp.text();
+                    
+                    const parsedXmlItems = parseXmlFeed(rawXml, sourceName, feedUrl);
+                    if (parsedXmlItems.length > 0) {
+                        mergeIntoStore(catKey, parsedXmlItems);
+                        return;
+                    } else {
+                        throw new Error('Empty XML parsed');
+                    }
+                } catch (err2) {
+                    // Log error for badge rendering
+                    feedErrors[sourceName] = { url: feedUrl, error: err2.message || 'CORS/Network Blocked' };
+                }
+            }
+        }
+
+        function parseXmlFeed(xmlText, sourceName, feedUrl) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+            const items = [];
+
+            // Check RSS <item> tags
+            const rssItems = xmlDoc.querySelectorAll("item");
+            if (rssItems.length > 0) {
+                rssItems.forEach(node => {
+                    const title = node.querySelector("title")?.textContent || "Untitled Article";
+                    const link = node.querySelector("link")?.textContent || feedUrl;
+                    const pubDate = node.querySelector("pubDate")?.textContent || node.querySelector("dc\\:date")?.textContent || new Date().toISOString();
+                    const desc = node.querySelector("description")?.textContent || node.querySelector("content\\:encoded")?.textContent || "";
+
+                    items.push({
+                        title: cleanHtmlText(title),
+                        link: link.trim(),
+                        pubDate: pubDate,
+                        source: sourceName,
+                        description: cleanHtmlText(desc)
+                    });
+                });
+                return items;
+            }
+
+            // Check Atom <entry> tags
+            const atomEntries = xmlDoc.querySelectorAll("entry");
+            if (atomEntries.length > 0) {
+                atomEntries.forEach(node => {
+                    const title = node.querySelector("title")?.textContent || "Untitled Article";
+                    const linkEl = node.querySelector("link[rel='alternate']") || node.querySelector("link");
+                    const link = linkEl ? linkEl.getAttribute("href") : feedUrl;
+                    const pubDate = node.querySelector("published")?.textContent || node.querySelector("updated")?.textContent || new Date().toISOString();
+                    const desc = node.querySelector("summary")?.textContent || node.querySelector("content")?.textContent || "";
+
+                    items.push({
+                        title: cleanHtmlText(title),
+                        link: link,
+                        pubDate: pubDate,
+                        source: sourceName,
+                        description: cleanHtmlText(desc)
+                    });
+                });
+            }
+
+            return items;
+        }
+
+        function mergeIntoStore(catKey, items) {
+            if (!store[catKey]) store[catKey] = [];
+            
+            items.forEach(newItem => {
+                const exists = store[catKey].some(existing => existing.title === newItem.title || existing.link === newItem.link);
+                if (!exists) {
+                    store[catKey].push(newItem);
+                }
+            });
+        }
+
+        function loadSampleData() {
+            store.science = [...SAMPLE_ARTICLES.science];
+            store.technology = [...SAMPLE_ARTICLES.technology];
+            store.innovation = [...SAMPLE_ARTICLES.innovation];
+            feedErrors = {};
+            renderAllSections();
+        }
+
+        function toggleSampleMode(forceOn = false) {
+            if (forceOn) {
+                useSampleMode = true;
+            } else {
+                useSampleMode = !useSampleMode;
+            }
+            const label = document.getElementById('sample-mode-label');
+            if (label) {
+                label.textContent = useSampleMode ? "Demo Mode ON" : "Demo Feed Off";
+            }
+            showToast(useSampleMode ? "Switched to Curated Demo Items" : "Switched to Live Feed Mode");
+            fetchAllFeeds(true);
+        }
+
+        function finalizeFetchUI(isUserRefresh) {
+            const refreshBtnIcon = document.getElementById('refresh-icon');
+            if (refreshBtnIcon) refreshBtnIcon.classList.remove('fa-spin');
+            
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('last-updated-indicator').innerHTML = `<i class="fa-regular fa-clock mr-1"></i>Updated ${timeStr}`;
+
+            renderStatusBadges();
+
+            if (isUserRefresh) {
+                showToast("Feeds successfully updated!");
+            }
+        }
+
+        // ================= RENDERING SECTIONS & CARDS =================
+        function renderAllSections() {
+            for (const catKey of Object.keys(CATEGORIES)) {
+                renderSectionGrid(catKey);
+            }
+            updateTotalBadgeCount();
+        }
+
+        function renderSectionGrid(catKey) {
+            const gridEl = document.getElementById(`grid-${catKey}`);
+            const countEl = document.getElementById(`count-${catKey}`);
+            if (!gridEl) return;
+
+            let articles = store[catKey] || [];
+
+            // Apply Source Filter Pills
+            const activeSources = activeFilters[catKey];
+            articles = articles.filter(item => activeSources.has(item.source));
+
+            // Apply Global Search Filter
+            if (activeSearchQuery.trim() !== "") {
+                const query = activeSearchQuery.toLowerCase();
+                articles = articles.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.description.toLowerCase().includes(query) ||
+                    item.source.toLowerCase().includes(query)
+                );
+            }
+
+            if (countEl) countEl.textContent = articles.length;
+
+            if (articles.length === 0) {
+                gridEl.innerHTML = `
+                    <div class="col-span-full py-12 px-4 text-center bg-white rounded-xl border border-dashed border-slate-300">
+                        <i class="fa-solid fa-folder-open text-3xl text-slate-300 mb-2"></i>
+                        <p class="text-slate-600 font-semibold text-sm">No articles match the current filter or search criteria.</p>
+                        <p class="text-xs text-slate-400 mt-1">Try resetting source filters or enabling Demo Mode.</p>
+                        <button onclick="resetSectionFilters('${catKey}')" class="mt-3 text-xs font-semibold text-police-blue hover:underline">
+                            Reset Filters for ${CATEGORIES[catKey].name}
+                        </button>
+                    </div>
+                `;
+                document.getElementById(`load-more-wrap-${catKey}`).classList.add('hidden');
+                return;
+            }
+
+            // Pagination slice
+            const limit = displayLimits[catKey];
+            const visibleArticles = articles.slice(0, limit);
+
+            gridEl.innerHTML = visibleArticles.map(article => renderArticleCard(article, catKey)).join('');
+
+            // Handle "Show More" button visibility
+            const loadMoreWrap = document.getElementById(`load-more-wrap-${catKey}`);
+            if (loadMoreWrap) {
+                if (articles.length > limit) {
+                    loadMoreWrap.classList.remove('hidden');
+                    const btn = document.getElementById(`btn-more-${catKey}`);
+                    if (btn) btn.innerHTML = `<span>Show More ${CATEGORIES[catKey].name} (${articles.length - limit} left)</span> <i class="fa-solid fa-chevron-down text-xs"></i>`;
+                } else {
+                    loadMoreWrap.classList.add('hidden');
+                }
+            }
+        }
+
+        function renderArticleCard(article, catKey) {
+            const formattedDate = formatRelativeTime(article.pubDate);
+            const sourceColorClass = getSourceBadgeClass(article.source);
+
+            return `
+                <article class="bg-white rounded-xl border border-police-border shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                    <div class="p-5 flex-grow">
+                        <!-- Top Source Pill + Time -->
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full border ${sourceColorClass}">
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                                ${escapeHtml(article.source)}
+                            </span>
+                            <span class="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+                                <i class="fa-regular fa-clock text-[10px]"></i>
+                                ${formattedDate}
+                            </span>
+                        </div>
+
+                        <!-- Headline -->
+                        <h3 class="font-bold text-slate-900 group-hover:text-police-blue transition-colors text-base leading-snug line-clamp-2 mb-2">
+                            <a href="${escapeHtml(article.link)}" target="_blank" rel="noopener noreferrer" class="focus:outline-none focus:underline">
+                                ${escapeHtml(article.title)}
+                            </a>
+                        </h3>
+
+                        <!-- Excerpt -->
+                        <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                            ${escapeHtml(article.description || 'No snippet preview available. Click to read full article at source.')}
+                        </p>
+                    </div>
+
+                    <!-- Footer Action Link -->
+                    <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                        <span class="text-slate-400 text-[11px]">Source Digest</span>
+                        <a href="${escapeHtml(article.link)}" target="_blank" rel="noopener noreferrer" class="text-police-blue hover:text-police-dark inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                            <span>Read article</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderStatusBadges() {
+            for (const [catKey, catObj] of Object.entries(CATEGORIES)) {
+                const statusContainer = document.getElementById(`status-${catKey}`);
+                if (!statusContainer) continue;
+
+                const failedInCat = catObj.feeds.filter(f => feedErrors[f.name]);
+                if (failedInCat.length === 0) {
+                    statusContainer.innerHTML = '';
+                    continue;
+                }
+
+                statusContainer.innerHTML = failedInCat.map(f => `
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-2.5 px-3 flex items-center justify-between text-xs text-amber-900">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-amber-600"></i>
+                            <span>Live feed fetch limit/policy for <strong>${f.name}</strong>. Showing fallback items if available.</span>
+                        </div>
+                        <a href="${f.url}" target="_blank" rel="noopener noreferrer" class="text-amber-700 hover:text-amber-900 font-semibold underline text-[11px] whitespace-nowrap">
+                            Direct RSS Link <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </a>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderSkeletonsAll() {
+            for (const catKey of Object.keys(CATEGORIES)) {
+                const gridEl = document.getElementById(`grid-${catKey}`);
+                if (!gridEl) continue;
+                gridEl.innerHTML = Array(3).fill(0).map(() => `
+                    <div class="bg-white rounded-xl border border-police-border p-5 shadow-sm space-y-3 animate-pulse-subtle">
+                        <div class="flex items-center justify-between">
+                            <div class="h-4 bg-slate-200 rounded w-24"></div>
+                            <div class="h-3 bg-slate-100 rounded w-16"></div>
+                        </div>
+                        <div class="h-5 bg-slate-200 rounded w-5/6"></div>
+                        <div class="h-4 bg-slate-200 rounded w-2/3"></div>
+                        <div class="space-y-1.5 pt-2">
+                            <div class="h-3 bg-slate-100 rounded w-full"></div>
+                            <div class="h-3 bg-slate-100 rounded w-4/5"></div>
+                        </div>
+                        <div class="pt-3 flex justify-between">
+                            <div class="h-3 bg-slate-100 rounded w-16"></div>
+                            <div class="h-3 bg-slate-200 rounded w-20"></div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ================= INTERACTION CONTROLS =================
+        function toggleSourcePill(catKey, sourceName) {
+            const set = activeFilters[catKey];
+            const pillBtn = document.getElementById(`pill-${catKey}-${sourceName}`);
+
+            if (set.has(sourceName)) {
+                if (set.size === 1) {
+                    showToast("At least one source must remain active per section");
+                    return;
+                }
+                set.delete(sourceName);
+                if (pillBtn) {
+                    pillBtn.classList.remove('active', 'bg-blue-50', 'bg-cyan-50', 'bg-teal-50', 'bg-slate-100', 'bg-orange-50', 'bg-purple-50', 'bg-emerald-50', 'bg-indigo-50', 'bg-amber-50', 'bg-red-50');
+                    pillBtn.classList.add('bg-slate-50', 'text-slate-400', 'border-slate-200', 'opacity-60');
+                }
+            } else {
+                set.add(sourceName);
+                if (pillBtn) {
+                    pillBtn.classList.remove('bg-slate-50', 'text-slate-400', 'border-slate-200', 'opacity-60');
+                    pillBtn.classList.add('active');
+                }
+            }
+            renderSectionGrid(catKey);
+        }
+
+        function resetSectionFilters(catKey) {
+            const catObj = CATEGORIES[catKey];
+            activeFilters[catKey] = new Set(catObj.feeds.map(f => f.name));
+
+            catObj.feeds.forEach(f => {
+                const pillBtn = document.getElementById(`pill-${catKey}-${f.name}`);
+                if (pillBtn) {
+                    pillBtn.classList.remove('bg-slate-50', 'text-slate-400', 'border-slate-200', 'opacity-60');
+                    pillBtn.classList.add('active');
+                }
+            });
+
+            renderSectionGrid(catKey);
+            showToast(`Filters reset for ${catObj.name}`);
+        }
+
+        function loadMoreSection(catKey) {
+            displayLimits[catKey] += 6;
+            renderSectionGrid(catKey);
+        }
+
+        function handleSearch(val) {
+            activeSearchQuery = val;
+            const clearBtn = document.getElementById('clear-search-btn');
+            const searchBar = document.getElementById('search-results-bar');
+            
+            if (val.trim() !== "") {
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                if (searchBar) searchBar.classList.remove('hidden');
+                document.getElementById('search-query-text').textContent = val;
+            } else {
+                if (clearBtn) clearBtn.classList.add('hidden');
+                if (searchBar) searchBar.classList.add('hidden');
+            }
+
+            renderAllSections();
+        }
+
+        function clearSearch() {
+            document.getElementById('global-search').value = "";
+            handleSearch("");
+        }
+
+        function scrollToSection(sectionId) {
+            // Tab styling update
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('bg-police-gold', 'text-police-dark');
+                tab.classList.add('text-slate-200');
+            });
+
+            const activeTab = document.getElementById(`nav-tab-${sectionId}`);
+            if (activeTab) {
+                activeTab.classList.add('bg-police-gold', 'text-police-dark');
+                activeTab.classList.remove('text-slate-200');
+            }
+
+            if (sectionId === 'all') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const target = document.getElementById(`section-${sectionId}`) || document.getElementById(sectionId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        function updateTotalBadgeCount() {
+            const total = store.science.length + store.technology.length + store.innovation.length;
+            const badge = document.getElementById('active-feed-count-badge');
+            if (badge) {
+                badge.textContent = `10 Feeds Monitored | ${total} Articles Loaded`;
+            }
+
+            const searchCountBadge = document.getElementById('search-results-count');
+            if (searchCountBadge) {
+                searchCountBadge.textContent = `${total} Results`;
+            }
+        }
+
+        // ================= FEED DIRECTORY TABLE & OPML EXPORT =================
+        function renderFeedDirectoryTable() {
+            const tbody = document.getElementById('rss-table-body');
+            if (!tbody) return;
+
+            let rowsHtml = '';
+            for (const [catKey, catObj] of Object.entries(CATEGORIES)) {
+                catObj.feeds.forEach(feed => {
+                    rowsHtml += `
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-3 px-3 font-semibold text-slate-500">${catObj.name}</td>
+                            <td class="py-3 px-3 font-bold text-police-dark">${escapeHtml(feed.name)}</td>
+                            <td class="py-3 px-3 font-mono text-slate-600 truncate max-w-xs sm:max-w-md">
+                                <a href="${feed.url}" target="_blank" rel="noopener noreferrer" class="hover:underline text-police-blue">
+                                    ${escapeHtml(feed.url)}
+                                </a>
+                            </td>
+                            <td class="py-3 px-3 text-right">
+                                <button onclick="copyToClipboard('${escapeHtml(feed.url)}')" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-police-navy hover:text-white px-2.5 py-1 rounded text-[11px] font-semibold text-slate-700 transition-colors">
+                                    <i class="fa-regular fa-copy"></i> Copy Link
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+            tbody.innerHTML = rowsHtml;
+        }
+
+        function exportOPML() {
+            let opmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>Police Science &amp; Technology Academy - RSS Feed Digest</title>
+        <dateCreated>${new Date().toUTCString()}</dateCreated>
+    </head>
+    <body>
+`;
+
+            for (const [catKey, catObj] of Object.entries(CATEGORIES)) {
+                opmlContent += `        <outline text="${escapeXml(catObj.name)}" title="${escapeXml(catObj.name)}">\n`;
+                catObj.feeds.forEach(feed => {
+                    opmlContent += `            <outline type="rss" text="${escapeXml(feed.name)}" title="${escapeXml(feed.name)}" xmlUrl="${escapeXml(feed.url)}"/>\n`;
+                });
+                opmlContent += `        </outline>\n`;
+            }
+
+            opmlContent += `    </body>
+</opml>`;
+
+            const blob = new Blob([opmlContent], { type: 'text/xml;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'Police_Science_Tech_Feeds.opml');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast("OPML file downloaded successfully!");
+        }
+
+        // ================= HELPER FUNCTIONS =================
+        function cleanHtmlText(htmlStr) {
+            if (!htmlStr) return '';
+            const temp = document.createElement('div');
+            temp.innerHTML = htmlStr;
+            let text = temp.textContent || temp.innerText || '';
+            // Remove multiple whitespace & newlines
+            text = text.replace(/\s+/g, ' ').trim();
+            return text;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
+        }
+
+        function escapeXml(str) {
+            return escapeHtml(str);
+        }
+
+        function formatRelativeTime(dateInput) {
+            try {
+                const date = new Date(dateInput);
+                if (isNaN(date.getTime())) return 'Recently';
+
+                const now = new Date();
+                const diffSec = Math.floor((now - date) / 1000);
+
+                if (diffSec < 60) return 'Just now';
+                if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+                if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+                if (diffSec < 604800) return `${Math.floor(diffSec / 86400)}d ago`;
+
+                return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+            } catch (e) {
+                return 'Recently';
+            }
+        }
+
+        function getSourceBadgeClass(sourceName) {
+            const map = {
+                'Science Daily': 'bg-blue-50 text-blue-700 border-blue-200',
+                'Science News': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+                'SciTechDaily': 'bg-teal-50 text-teal-700 border-teal-200',
+                'Flipboard Technology': 'bg-red-50 text-red-700 border-red-200',
+                'Ars Technica': 'bg-orange-50 text-orange-700 border-orange-200',
+                'The Verge': 'bg-purple-50 text-purple-700 border-purple-200',
+                'TechCrunch': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                'Singularity Hub': 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                'Hacker News': 'bg-amber-50 text-amber-700 border-amber-200',
+                'NIST Taking Measure': 'bg-red-50 text-red-700 border-red-200'
+            };
+            return map[sourceName] || 'bg-slate-100 text-slate-700 border-slate-200';
+        }
+
+        function copyToClipboard(text) {
+            // Using execCommand fallback for strict iframe safety
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("Feed URL copied to clipboard!");
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            if (!toast || !msgEl) return;
+
+            msgEl.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
